@@ -3,7 +3,6 @@ safari.application.addEventListener("validate", performValidate, false);
 safari.application.addEventListener("command", performCommand, false);
 safari.application.addEventListener("message", handleMessage, false);
 
-var ctrlStatusGlobal = false;
 
 // In the global page, the only events to listen for 
 // are toolbar or context menu events. This determines which it was.
@@ -65,16 +64,10 @@ function handleMessage(event)
     
     if (event.name == 'openInPapersViaKeyboardShortcut')
     {
-        if (ctrlStatusGlobal == true)
-        {
-            activeTab = safari.application.activeBrowserWindow.activeTab;
-            openURLinPapers(activeTab.url, activeTab.title, "");
-        }
+    	activeTab = safari.application.activeBrowserWindow.activeTab;
+        if (activeTab.url) openURLinPapers(activeTab.url, activeTab.title, "");
     }
-    else if(event.name == 'ctrlStatusUpdate')
-    {
-        ctrlStatusGlobal = event.message;
-    }
+
 }
 
 

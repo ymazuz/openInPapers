@@ -1,34 +1,16 @@
 window.addEventListener('keydown', checkKeyDown, false);
-window.addEventListener('keyup', checkKeyUp, false);
 document.addEventListener("contextmenu", getContextMenuEvent, false);
 
 
 function checkKeyDown(event)
 {
-    // <ctrl> key press
-    if (event.keyCode == 17)
+    // <ctrl-p> key press
+    if (event.keyCode == 80 & event.ctrlKey)
     {
-		safari.self.tab.dispatchMessage('ctrlStatusUpdate', true);
+		safari.self.tab.dispatchMessage("openInPapersViaKeyboardShortcut", true);
 	}
-	// <p> key press
-	else if(event.keyCode == 80)
-	{
-	    safari.self.tab.dispatchMessage("openInPapersViaKeyboardShortcut", true);
-    }
-    else
-    {
-        safari.self.tab.dispatchMessage('ctrlStatusUpdate', false);
-    }
 }
 
-function checkKeyUp(event)
-{
-    // <ctrl> key release
-	if(event.keyCode == 17)
-	{
-		safari.self.tab.dispatchMessage('ctrlStatusUpdate', false);
-	}
-}
 
 function getContextMenuEvent(event) {
 	
